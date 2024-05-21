@@ -1,0 +1,23 @@
+{% extends "main_app/base.html" %}
+
+{% block body_block %}
+
+<div class="container">
+    <br>
+    <h1 align="center">Welcome to G3 Online Course Platform!</h1>
+    <br><br>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <ul class="nav flex-column">
+            
+                    <li class="nav-item"><a class="nav-link btn" href="{% url 'main_app:register' %}">New here? Register now</a></li>
+                    <br>
+                    <li class="nav-item"><a class="nav-link btn" href="{% url 'main_app:user_login' %}">Already have an account? Login</a></li>
+                
+            </ul>
+        
+        </div>
+    </div>
+</div>
+
+{% endblock %} 
