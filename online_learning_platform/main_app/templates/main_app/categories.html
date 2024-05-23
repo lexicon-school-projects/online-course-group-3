@@ -1,0 +1,12 @@
+{% extends "main_app/base.html" %}
+
+{% block body_block %}
+
+{% for category in categories %}
+    <div class="item">
+        <a href="{% url 'courses_in_category' category.title %}">View more courses in this category</a>
+        <h3>{{ category.title }}</h3>
+            <p><strong>Description: </strong> {{ category.description }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}

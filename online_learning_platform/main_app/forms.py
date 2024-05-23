@@ -19,9 +19,9 @@ class UserProfileInfoForm(forms.ModelForm):
 class CategoryForm(forms.ModelForm):
     class Meta():
         model= Category
-        fields = ('title',)
+        fields = ('title','description',)
 
 class CourseForm(forms.ModelForm):
     class Meta():
         model= Course
-        fields = ('title', 'teacher', 'description', 'price', 'release_date',)
+        fields = ('title', 'teacher', 'description', 'price', 'release_date','category',)

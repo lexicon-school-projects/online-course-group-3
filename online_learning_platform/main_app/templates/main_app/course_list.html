@@ -1,0 +1,10 @@
+{% extends "main_app/base.html" %}
+
+{% block body_block %}
+
+{% for course in courses %}
+    <div class="item">
+        <h3>{{ course.title }}</h3>
+    </div>
+    {% endfor %}
+{% endblock %}
