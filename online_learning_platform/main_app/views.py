@@ -91,8 +91,9 @@ def user_login(request):
     
 
 
-def quiz_view(request, quiz_id):
-    quiz = get_object_or_404(Quiz, id=quiz_id)
+def quiz_view(request, course_title):
+    course = get_object_or_404(Course, title=course_title)
+    quiz = get_object_or_404(Quiz, course=course)
     questions = Question.objects.filter(quiz=quiz)
     results = None
     

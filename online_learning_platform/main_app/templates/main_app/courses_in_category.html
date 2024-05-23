@@ -1,22 +1,21 @@
-{% extends "main_app/base.html" %}
-
-{% block body_block %}
-    {% if category %}
-        <h2>Courses in {{ category.title }}</h2>
-        {% if courses_in_category %}
-            {% for course in courses_in_category %}
-                <div class="item">
-                    <h3>{{ course.title }}</h3>
-                    <p>{{ course.description }}</p>
-                    <p>Teacher: {{ course.teacher }}</p>
-                    <p>Price: ${{ course.price }}</p>
-                    <p>Release Date: {{ course.release_date }}</p>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No courses found in this category.</p>
-        {% endif %}
-    {% else %}
-        <p>Category not found.</p>
-    {% endif %}
-{% endblock %}
+{% extends "main_app/base.html" %} {% block body_block %} {% if category %}
+<h2>Courses in {{ category.title }}</h2>
+{% if courses_in_category %} {% for course in courses_in_category %}
+<div class="item">
+  <h3>{{ course.title }}</h3>
+  <p>{{ course.description }}</p>
+  <p>Teacher: {{ course.teacher }}</p>
+  <p>Price: ${{ course.price }}</p>
+  <p>Release Date: {{ course.release_date }}</p>
+  <form method="get" action="">
+    <button type="submit">Watch video</button>
+  </form>
+  <form method="get" action="/quiz/{{ course.title }}">
+    <button type="submit">{{ course.title }} Quiz</button>
+  </form>
+</div>
+{% endfor %} {% else %}
+<p>No courses found in this category.</p>
+{% endif %} {% else %}
+<p>Category not found.</p>
+{% endif %} {% endblock %}
