@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic=models.ImageField(upload_to='profile_pics', blank=True)
+    profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
 
     def __str__(self):
         return self.user.username
@@ -14,7 +14,7 @@ class UserProfileInfo(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=200, primary_key=True)
-    description=models.TextField(blank=True)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.title
@@ -30,3 +30,21 @@ class Course(models.Model):
     
     def __str__(self):
         return self.title
+    
+
+class Quiz(models.Model):
+    title = models.CharField(max_length=200)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+
+class Question(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    text = models.CharField(max_length=500)
+    option1 = models.CharField(max_length=200)
+    option2 = models.CharField(max_length=200)
+    option3 = models.CharField(max_length=200)
+    option4 = models.CharField(max_length=200)
+    correct_option = models.CharField(max_length=200)

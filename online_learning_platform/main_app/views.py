@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from main_app.forms import UserForm, UserProfileInfoForm
-from .models import UserProfileInfo, Course, Category
+from .models import UserProfileInfo, Course, Category, Quiz, Question
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -88,3 +88,27 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied!")
     else:
         return render(request, 'main_app/login.html', {})
+    
+
+
+def quiz_view(request, quiz_id):
+    quiz = get_object_or_404(Quiz, id=quiz_id)
+    questions = Question.objects.filter(quiz=quiz)
+    results = None
+    
+    if request.method == 'POST':
+        results = []
+        for question in questions:
+            selected_option = request.POST.get(f'question_{question.id}')
+            is_correct = (selected_option == question.correct_option)
+            results.append({
+                'question': question,
+                'selected_option': selected_option,
+                'is_correct': is_correct
+            })
+
+    return render(request, 'main_app/quiz.html', {
+        'quiz': quiz,
+        'questions': questions,
+        'results': results,
+    })

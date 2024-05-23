@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ quiz.title }}</title>
+    <style>
+      .correct {
+        color: green;
+      }
+      .incorrect {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{ quiz.title }}</h1>
+    <form method="post">
+      {% csrf_token %}
+      <ul>
+        {% for question in questions %}
+        <li>
+          <strong>{{ question.text }}</strong>
+          <ul>
+            <li>
+              <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ question.option1 }}" />
+                {{ question.option1 }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ question.option2 }}" />
+                {{ question.option2 }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ question.option3 }}" />
+                {{ question.option3 }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ question.option4 }}" />
+                {{ question.option4 }}
+              </label>
+            </li>
+          </ul>
+          {% if results %} {% for result in results %} {% if result.question.id == question.id %}
+          <p class="{% if result.is_correct %}correct{% else %}incorrect{% endif %}">
+            {% if result.is_correct %} Correct! {% else %} Incorrect! The correct answer is: {{ question.correct_option
+            }} {% endif %}
+          </p>
+          {% endif %} {% endfor %} {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
