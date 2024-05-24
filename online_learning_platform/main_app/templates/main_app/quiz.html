@@ -73,7 +73,7 @@
             </li>
           </ul>
           {% if results %} {% for result in results %} {% if result.question.id == question.id %}
-          <p class="{% if result.is_correct %}correct{% else %}incorrect{% endif %} mt-2">
+          <p id="result-feedback" class="{% if result.is_correct %}correct{% else %}incorrect{% endif %} mt-2">
             {% if result.is_correct %} {{ result.correct_option }} is correct! {% else %} Incorrect! The correct answer
             is: {{ result.correct_option }} {% endif %}
           </p>
@@ -118,7 +118,11 @@
         return true;
       };
       document.getElementById("redo-button").onclick = function () {
-        location.reload();
+        document.querySelector("form").reset();
+        document.querySelectorAll("#result-feedback").forEach(function (element) {
+          element.style.display = "none";
+        });
+        document.getElementById("error-message").style.display = "none";
       };
     </script>
   </body>
