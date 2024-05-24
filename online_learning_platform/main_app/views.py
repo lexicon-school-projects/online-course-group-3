@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from main_app.forms import UserForm, UserProfileInfoForm
-from .models import UserProfileInfo, Course, Category
+from main_app.forms import UserForm, UserProfileInfoForm, TeacherForm
+from .models import UserProfileInfo, Course, Category, Teacher
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -29,8 +29,22 @@ def categories(request):
     return render(request, 'main_app/categories.html', {'categories': categories})
 
 def course_list(request):
-    books = Course.objects.all()
-    return render(request, 'main_app/courses_list.html', {'courses': course_list})
+    course_list = Course.objects.all()
+    return render(request, 'main_app/course_list.html', {'courses': course_list})
+
+def teachers(request):
+    teachers=Teacher.objects.all()
+    return render(request, 'main_app/teacher_page.html', {'teachers': teachers})
+
+
+def course_page(request, course_id):
+    course = Course.objects.get(id=course_id)
+    return render(request, 'main_app/course_page.html', {'course': course})
+
+def courses_in_category(request, title):
+    category = Category.objects.get(title=title)
+    courses_in_category = Course.objects.filter(category=category)
+    return render(request, 'main_app/courses_in_category.html', {'courses_in_category': courses_in_category, 'category': category})
 
 def register(request):
     registered = False
@@ -74,7 +88,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('categories'))
             else:
                 return HttpResponse("ACCOUNT NOT ACTIVE")
         else:
@@ -83,3 +97,8 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied!")
     else:
         return render(request, 'main_app/login.html', {})
+    
+
+
+
+

@@ -9,11 +9,12 @@
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <ul class="nav flex-column">
-            
+                {% if not user.is_authenticated %} 
                     <li class="nav-item"><a class="nav-link btn" href="{% url 'main_app:register' %}">New here? Register now</a></li>
                     <br>
                     <li class="nav-item"><a class="nav-link btn" href="{% url 'main_app:user_login' %}">Already have an account? Login</a></li>
-                
+                {% endif %}
+
             </ul>
         
         </div>
