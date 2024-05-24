@@ -11,5 +11,9 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='user_login'),
     path('categories/', views.categories, name='categories'),
-    path('category/<str:category_title>/courses/', views.courses_in_category, name='courses_in_category'),
-]
+    path('category/<str:title>/courses/', views.courses_in_category, name='courses_in_category'),
+    path('courses/', views.course_list, name='course_list'),
+    path('course/<int:course_id>/', views.course_page, name='course_page'),
+    path('teacher/', views.teachers, name='teachers')
+  
+] 
