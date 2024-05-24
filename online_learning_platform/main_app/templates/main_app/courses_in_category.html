@@ -6,11 +6,9 @@
         {% if courses_in_category %}
             {% for course in courses_in_category %}
                 <div class="item">
-                    <h3>{{ course.title }}</h3>
+                    <a href="{% url 'main_app:course_page' course.id %}">{{ course.title }} </a></li>
                     <p>{{ course.description }}</p>
-                    <p>Teacher: {{ course.teacher }}</p>
                     <p>Price: ${{ course.price }}</p>
-                    <p>Release Date: {{ course.release_date }}</p>
                 </div>
             {% endfor %}
         {% else %}

@@ -8,5 +8,5 @@ urlpatterns = [
     path('main_app/', include('main_app.urls')),
     path('logout', views.user_logout, name='logout'),
     path('categories/', views.categories, name='categories'),
-    path('category/<str:category_title>/courses/', views.courses_in_category, name='courses_in_category'),
+    path('category/<str:title>/courses/', views.courses_in_category, name='courses_in_category'),    
 ]
