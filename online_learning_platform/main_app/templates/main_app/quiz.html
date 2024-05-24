@@ -11,6 +11,11 @@
       .incorrect {
         color: red;
       }
+      .error-message {
+        color: red;
+        font-weight: bold;
+        display: none;
+      }
     </style>
   </head>
   <body class="container">
@@ -69,19 +74,52 @@
           </ul>
           {% if results %} {% for result in results %} {% if result.question.id == question.id %}
           <p class="{% if result.is_correct %}correct{% else %}incorrect{% endif %} mt-2">
-            {% if result.is_correct %} Correct! {% else %} Incorrect! The correct answer is: {{ question.correct_option
-            }} {% endif %}
+            {% if result.is_correct %} {{ result.correct_option }} is correct! {% else %} Incorrect! The correct answer
+            is: {{ result.correct_option }} {% endif %}
           </p>
           {% endif %} {% endfor %} {% endif %}
         </li>
         {% endfor %}
       </ul>
+      <div class="error-message" id="error-message">Please answer all questions before submitting.</div>
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
+      <button type="button" class="btn btn-secondary mt-3" id="redo-button">Redo Test</button>
     </form>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      document.querySelector("form").onsubmit = function () {
+        let allAnswered = true;
+        document.querySelectorAll(".list-group-item").forEach(function (item) {
+          let options = item.querySelectorAll('input[type="radio"]');
+          let answered = false;
+          options.forEach(function (option) {
+            if (option.checked) {
+              answered = true;
+            }
+          });
+          if (!answered) {
+            allAnswered = false;
+            item.classList.add("border", "border-danger");
+          } else {
+            item.classList.remove("border", "border-danger");
+          }
+        });
+        if (!allAnswered) {
+          document.getElementById("error-message").style.display = "block";
+          return false;
+        } else {
+          document.getElementById("error-message").style.display = "none";
+        }
+        return true;
+      };
+      document.getElementById("redo-button").onclick = function () {
+        location.reload();
+      };
+    </script>
   </body>
 </html>

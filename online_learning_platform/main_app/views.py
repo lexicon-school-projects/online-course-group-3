@@ -105,7 +105,8 @@ def quiz_view(request, course_title):
             results.append({
                 'question': question,
                 'selected_option': selected_option,
-                'is_correct': is_correct
+                'is_correct': is_correct,
+                'correct_option': question.correct_option
             })
 
     return render(request, 'main_app/quiz.html', {
