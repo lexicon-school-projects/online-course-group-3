@@ -1,11 +1,12 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from main_app.forms import UserForm, UserProfileInfoForm, TeacherForm
-from .models import UserProfileInfo, Course, Category, Teacher
+from .models import UserProfileInfo, Course, Category, Teacher, Question, Quiz
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+from urllib.parse import unquote
+from django.utils.text import slugify
 
 
 def index(request):
@@ -37,9 +38,19 @@ def teachers(request):
     return render(request, 'main_app/teacher_page.html', {'teachers': teachers})
 
 
+# def course_page(request, course_id):
+#     course = Course.objects.get(id=course_id)
+#     return render(request, 'main_app/course_page.html', {'course': course})
+
 def course_page(request, course_id):
-    course = Course.objects.get(id=course_id)
-    return render(request, 'main_app/course_page.html', {'course': course})
+    course = get_object_or_404(Course, id=course_id)
+    url_safe_title = slugify(course.title)
+    quiz_exists = Quiz.objects.filter(course=course).exists()
+    return render(request, 'main_app/course_page.html', {
+        'course': course,
+        'quiz_exists': quiz_exists,
+        'url_safe_title': url_safe_title,
+    })
 
 def courses_in_category(request, title):
     category = Category.objects.get(title=title)
@@ -100,5 +111,28 @@ def user_login(request):
     
 
 
+def quiz_view(request, course_title):
+    decoded_course_title = course_title.replace('-', ' ').lower()
+    course = get_object_or_404(Course, title__iexact=decoded_course_title)
+    
+    quiz = get_object_or_404(Quiz, course=course)
+    questions = Question.objects.filter(quiz=quiz)
+    results = None
 
+    if request.method == 'POST':
+        results = []
+        for question in questions:
+            selected_option = request.POST.get(f'question_{question.id}')
+            is_correct = (selected_option == question.correct_option)
+            results.append({
+                'question': question,
+                'selected_option': selected_option,
+                'is_correct': is_correct,
+                'correct_option': question.correct_option
+            })
 
+    return render(request, 'main_app/quiz.html', {
+        'quiz': quiz,
+        'questions': questions,
+        'results': results,
+    })
