@@ -1,9 +1,14 @@
-{% extends "main_app/base.html" %}
+{% extends "main_app/base.html" %} {% block body_block %}
+<h2>{{ course.title }}</h2>
+<p>{{ course.description }}</p>
+<p>Teacher: <a href="{% url 'main_app:teachers' %}">{{ course.teacher }}</a></p>
+<p>Price: ${{ course.price }}</p>
+<p>Release Date: {{ course.release_date }}</p>
 
-{% block body_block %}
-    <h2>{{ course.title }}</h2>
-    <p>{{ course.description }}</p>
-    <p>Teacher: <a href="{% url 'main_app:teachers' %}">{{ course.teacher }} </a></p>
-    <p>Price: {{ course.price }} kr</p>
-    <p>Release Date: {{ course.release_date }}</p>
-{% endblock %}
+{% if quiz_exists %}
+<form method="get" action="{% url 'main_app:quiz_view' url_safe_title %}">
+  <button type="submit">{{ course.title }} Quiz</button>
+</form>
+{% else %}
+<p>No quiz available for this course.</p>
+{% endif %} {% endblock %}
