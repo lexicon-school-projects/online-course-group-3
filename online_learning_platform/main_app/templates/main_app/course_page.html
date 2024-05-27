@@ -4,6 +4,6 @@
     <h2>{{ course.title }}</h2>
     <p>{{ course.description }}</p>
     <p>Teacher: <a href="{% url 'main_app:teachers' %}">{{ course.teacher }} </a></p>
-    <p>Price: ${{ course.price }}</p>
+    <p>Price: {{ course.price }} kr</p>
     <p>Release Date: {{ course.release_date }}</p>
 {% endblock %}

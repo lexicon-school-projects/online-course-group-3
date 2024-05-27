@@ -36,7 +36,6 @@ def teachers(request):
     teachers=Teacher.objects.all()
     return render(request, 'main_app/teacher_page.html', {'teachers': teachers})
 
-
 def course_page(request, course_id):
     course = Course.objects.get(id=course_id)
     return render(request, 'main_app/course_page.html', {'course': course})

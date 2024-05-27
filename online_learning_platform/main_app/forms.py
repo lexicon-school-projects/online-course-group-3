@@ -12,7 +12,7 @@ class UserForm(forms.ModelForm):
 class TeacherForm(forms.ModelForm):
     class Meta():
         model=Teacher
-        fields = ('first_name', 'last_name','bio',)
+        fields = ('first_name', 'last_name','bio','teacher_id',)
 
 class UserProfileInfoForm(forms.ModelForm):
     class Meta():
@@ -28,4 +28,4 @@ class CategoryForm(forms.ModelForm):
 class CourseForm(forms.ModelForm):
     class Meta():
         model= Course
-        fields = ('id','title', 'teacher', 'description', 'price', 'release_date',)
+        fields = ('id','title', 'description', 'price', 'release_date',)
