@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main_app.models import UserProfileInfo, Course, Category, Teacher
+from main_app.models import Student, Course, Category, Teacher
 from main_app.forms import CourseForm, CategoryForm, TeacherForm
 # Register your models here.
 
@@ -13,7 +13,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class TeacherAdmin(admin.ModelAdmin):
     form=TeacherForm
 
-admin.site.register(UserProfileInfo)
+admin.site.register(Student)
 admin.site.register(Course)
 admin.site.register(Category)
 admin.site.register(Teacher)
