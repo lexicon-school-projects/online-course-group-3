@@ -14,7 +14,8 @@ class UserProfileInfo(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
-    description=models.TextField(blank=True)
+    description = models.TextField(blank=True)
+    image_path = models.CharField(max_length=255, default='images/art.jpg')  # Set default value here
 
     def __str__(self):
         return self.title

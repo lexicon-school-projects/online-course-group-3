@@ -1,13 +1,43 @@
-{% extends "main_app/base.html" %}
-
-{% block body_block %}
-
-{% for category in categories %}
-    <div class="container">
-        <h3>{{ category.title }}</h3>
-            <p><strong>Description: </strong> {{ category.description }}</p>
-        <a href="{% url 'courses_in_category' category.title %}">View more courses in this category</a>
-        <br><br>
+{% extends "main_app/base.html" %} {% load static %} {% block body_block %}
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .card-img-overlay {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img-top {
+      height: 200px; /* Set a fixed height for the images */
+      width: 100%; /* Make the image take the full width of the card */
+      object-fit: cover; /* Ensure the image covers the card area */
+    }
+  </style>
+</head>
+<div class="container-fluid mt-4">
+  <div class="row">
+    {% for category in categories %}
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="position-relative">
+          <img src="{% static category.image_path %}" class="card-img-top" alt="{{ category.title }} Image" />
+          <div class="card-img-overlay">
+            <h1 class="card-title">{{ category.title }}</h1>
+          </div>
+        </div>
+        <div class="card-body">
+          <a href="{% url 'courses_in_category' category.title %}" class="btn btn-primary mt-auto">View courses</a>
+        </div>
+      </div>
     </div>
     {% endfor %}
+  </div>
+</div>
 {% endblock %}

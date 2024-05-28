@@ -1,24 +1,31 @@
-{% extends "main_app/base.html" %}
+{% extends "main_app/base.html" %} {% load static %} {% block body_block %}
 
-{% block body_block %}
-
-<div class="container">
-    <br>
-    <h1 align="center">Welcome to G3 Online Course Platform!</h1>
-    <br><br>
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <ul class="nav flex-column">
-                {% if not user.is_authenticated %} 
-                    <li class="nav-item"><a class="nav-link btn" href="{% url 'main_app:register' %}">New here? Register now</a></li>
-                    <br>
-                    <li class="nav-item"><a class="nav-link btn" href="{% url 'main_app:user_login' %}">Already have an account? Login</a></li>
-                {% endif %}
-
-            </ul>
-        
+<div class="container-fluid" style="padding: 0;">
+  <div class="hero-section" style="position: relative; text-align: center; color: white; height: 100vh;">
+    <img
+      src="{% static 'images/hero-computer.jpg' %}"
+      alt="Hero Image"
+      style="width: 100%; height: 100vh; object-fit: cover; margin: 0;"
+    />
+    <div class="hero-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      <h1>Welcome to G3 Online Course Platform!</h1>
+      <br />
+      <div class="row justify-content-center">
+        {% if not user.is_authenticated %}
+        <div class="col-auto">
+          <a class="btn btn-primary" href="{% url 'main_app:register' %}" style="margin: 10px; color: white;">
+            New here? Register now
+          </a>
         </div>
+        <div class="col-auto">
+          <a class="btn btn-secondary" href="{% url 'main_app:user_login' %}" style="margin: 10px; color: white;">
+            Already have an account? Login
+          </a>
+        </div>
+        {% endif %}
+      </div>
     </div>
+  </div>
 </div>
 
-{% endblock %} 
+{% endblock %}
