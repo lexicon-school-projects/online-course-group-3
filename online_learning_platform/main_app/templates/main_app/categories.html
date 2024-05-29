@@ -2,12 +2,24 @@
 
 {% block body_block %}
 
+<style>
+.item{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px; 
+    border-radius: 40px;
+}
+</style>
+
 {% for category in categories %}
-    <div class="container">
+<div class="container">
+    <div class="item">
         <h3>{{ category.title }}</h3>
             <p><strong>Description: </strong> {{ category.description }}</p>
-        <a href="{% url 'courses_in_category' category.title %}">View more courses in this category</a>
+        <a href="{% url 'courses_in_category' category.title %}">View courses in this category</a>
         <br><br>
     </div>
+</div>
     {% endfor %}
 {% endblock %}

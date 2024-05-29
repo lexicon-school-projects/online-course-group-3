@@ -1,6 +1,18 @@
 {% extends "main_app/base.html" %}
 
 {% block body_block %}
-<h3>{{teachers.first_name}}{{teacher.last_name}}</h3>
-
+    <h3>{{ teacher.first_name }} {{ teacher.last_name }}</h3>
+    <p>{{ teacher.bio }}</p>
+    <h4>Other courses of {{ teacher.first_name }}:</h4>
+    {% if courses_same_teacher %}
+        <ul>
+        {% for course in courses_same_teacher %}
+            <li>
+                <a href="{% url 'main_app:course_page' course.id %}">{{ course.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No other courses available.</p>
+    {% endif %}
 {% endblock %}

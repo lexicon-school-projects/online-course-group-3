@@ -1,0 +1,18 @@
+{% extends "main_app/base.html" %}
+
+{% block body_block %}
+
+<div class="container">
+    <h1>Welcome {{ user.username }}</h1>
+    <h2>Enrolled Courses</h2>
+    <ul>
+        {% for user_course in enrolled_courses %}
+            <li>
+                <a href="{% url 'course_page' user_course.course.id %}">{{ user_course.course.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'categories' %}">See all the courses</a></p>
+</div>
+
+{% endblock %}
