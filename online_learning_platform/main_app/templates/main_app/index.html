@@ -4,21 +4,26 @@
 
 <div class="container">
     <br>
-    <h1 align="center">Welcome to G3 Online Course Platform!</h1>
+    <h1 align="center" style="color: #007bff;">Welcome to G3 Online Course Platform!</h1>
+    <br><br>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <p align="center" style="color: #333; font-size: 18px;">Learn and grow with our extensive collection of online courses.</p>
+            <p align="center" style="color: #333; font-size: 18px;">Unlock your potential and achieve your goals from anywhere, anytime.</p>
+        </div>
+    </div>
     <br><br>
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <ul class="nav flex-column">
                 {% if not user.is_authenticated %} 
-                    <li class="nav-item"><a class="nav-link btn" href="{% url 'main_app:register' %}">New here? Register now</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary" href="{% url 'main_app:register' %}">New here? Register now</a></li>
                     <br>
-                    <li class="nav-item"><a class="nav-link btn" href="{% url 'main_app:user_login' %}">Already have an account? Login</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-success" href="{% url 'main_app:user_login' %}">Already have an account? Login</a></li>
                 {% endif %}
-
             </ul>
-        
         </div>
     </div>
 </div>
 
-{% endblock %} 
+{% endblock %}

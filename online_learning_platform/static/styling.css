@@ -1,11 +1,180 @@
-.navbar {
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-    background-color: #e2e1ebc7;
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1f64b483;
+    margin: 0;
+    padding: 0;
+    background-image: url('back2.jpg');
 }
 
-body {
-    background-color: rgb(225, 211, 216);
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+    background-color: #8cabcae0;
 }
+
+.navbar {
+    background-color: #007bff;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #ffffff;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-brand:hover,
+.navbar-nav .nav-link:hover {
+    color: #ffcc00;
+}
+
+/* Animation for Navbar Links */
+.nav-item {
+    position: relative;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffcc00;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* Styling for Navbar Links */
+.nav-item a {
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+/* Animation for Navbar Brand */
+.navbar-brand::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #ffcc00;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.navbar-brand:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Additional Styles */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #ffcc00;
+}
+
+
+
+
+
+/* Styling for Navbar Logo */
+.navbar-brand {
+    position: relative;
+}
+
+.navbar-brand img {
+    height: 100px; /* Adjust the height as needed */
+    width: auto;
+    transition: transform 0.3s ease-in-out; /* Adding a smooth transition */
+}
+
+/* Advanced hover effect */
+.navbar-brand:hover img {
+    transform: scale(1.1); /* Increasing the size of the logo on hover */
+}
+
+
+
+
+/* Custom styling for index.html */
+
+.container {
+    padding: 50px 50px;
+    
+    
+}
+
+h1 {
+    color: #007bff;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+p {
+    color: #333;
+    font-size: 18px;
+    text-align: center;
+}
+
+.btn {
+    display: -ms-flexbox;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #ccc;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+    border: 2px solid #000;
+    font-size: 20px;
+    padding: 15px 25px;
+    border-radius: 10px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
