@@ -1,0 +1,9 @@
+# Ignore database file
+db.sqlite3
+
+# Ignore other common files/folders
+__pycache__/
+*.py[cod]
+*.swp
+.env
+*.log
