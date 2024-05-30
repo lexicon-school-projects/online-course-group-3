@@ -5,6 +5,8 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('back2.jpg');
+    background-blend-mode: lighten; /* options: normal, multiply, screen, overlay, darken, lighten, etc. */
+    
 }
 
 .container {
@@ -12,10 +14,11 @@ body {
     margin: 0 auto;
     padding: 0px;
     background-color: #8cabcae0;
+   
 }
 
 .navbar {
-    background-color: #007bff;
+    background-color: rgba(132, 150, 147, 0.719);
 }
 
 .navbar-brand,
@@ -86,28 +89,24 @@ a:hover {
 
 
 
-
-
-/* Styling for Navbar Logo */
+/* for navbar */
 .navbar-brand {
     position: relative;
 }
 
 .navbar-brand img {
-    height: 100px; /* Adjust the height as needed */
+    height: 100px; 
     width: auto;
-    transition: transform 0.3s ease-in-out; /* Adding a smooth transition */
+    transition: transform 0.3s ease-in-out; 
 }
 
-/* Advanced hover effect */
+
 .navbar-brand:hover img {
-    transform: scale(1.1); /* Increasing the size of the logo on hover */
+    transform: scale(1.1); 
 }
 
 
-
-
-/* Custom styling for index.html */
+/* this css code for index.html */
 
 .container {
     padding: 50px 50px;
@@ -162,15 +161,96 @@ p {
 
 }
 
+/* this css code for footer */
+.footer {
+    background-color: rgba(244, 250, 249, 0.719);
+    padding: 0px 0px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    color: #0f6ecec4;
+    
+}
+
+.footer p {
+    margin: 0px;
+    font-size: 18px;
+    /* background-color:rgba(132, 150, 147, 0.719); */
+}
 
 
+/* for social media */
+.social-icons {
+    margin-top: 0px;
+}
+
+.social-icons a {
+    margin: 0 35px;
+    text-decoration: none;
+    color: #555;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #007bff; /* Change this to the color you prefer */
+}
 
 
+/* for login/signup */
 
+.jumbotron {
+    background-color: #e6dde691;
+    padding: 6rem;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(228, 10, 10, 0.801);
+    max-width: 500px;
+    width: 150%;
+    text-align: center;
+}
 
+h1 {
+    color: #333;
+    margin-bottom: 1.7rem;
+}
 
+form {
+    display: flex;
+    flex-direction: column;
+}
 
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
 
+.form-control {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.submit-button {
+    padding: 20px;
+    font-size: 22px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #b36500;
+}
 
 
 

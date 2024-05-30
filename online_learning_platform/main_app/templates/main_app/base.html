@@ -11,28 +11,43 @@
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container">
+            <ul class="navbar-nav">
+                <a class="navbar-brand" href="#"><img src="{% static 'logo1.png' %}" alt="Logo"></a>
+                <a class="navbar-brand" href="#">G3 Online Learning Platform</a>
+
+                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}"><i class="fas fa-user-cog"></i> Admin</a></li>
+
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user"></i> My profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'categories' %}"><i class="fas fa-list"></i> Categories</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <ul class="navbar-nav">
-            <a class="navbar-brand" href="#"><img src="{% static 'logo1.png' %}" alt="Logo"></a>
-            <a class="navbar-brand" href="#">G3 Online Learning Platform</a>
-            
-            <li class="nav-item"><a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}"><i class="fas fa-user-cog"></i> Admin</a></li>
-            
-            {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user"></i> My profile</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'categories' %}"><i class="fas fa-list"></i> Categories</a></li>   
-            {% endif %}
-        </ul>
+        {% block body_block %}
+        {% endblock %}
     </div>
-</nav>
 
-<div class="container">
-    {% block body_block %}
-    {% endblock %}
-</div>
+    
 
-
+    <!-- Footer Section -->
+    <footer class="footer">
+        
+        <div class="container text-center">
+            <div class="social-icons">
+                <a href="https://www.facebook.com" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2024 G3 Online Course Platform. All rights reserved.</p>
+            
+        </div>
+    </footer>
 </body>
 </html>

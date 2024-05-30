@@ -4,11 +4,32 @@
     {% if category %}
         <h2>Courses in {{ category.title }}</h2>
         {% if courses_in_category %}
+            <style>
+                .item {
+                    border: 1px solid #ccc;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                    border-radius: 10px;
+                    background-color: #f9f9f9;
+                }
+
+                .item a {
+                    color: #007bff;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+
+                .item p {
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    font-size: 16px;
+                }
+            </style>
+
             {% for course in courses_in_category %}
                 <div class="item">
-                    <a href="{% url 'main_app:course_page' course.id %}">{{ course.title }} </a></li>
+                    <a href="{% url 'main_app:course_page' course.id %}">{{ course.title }}</a>
                     <p>{{ course.description }}</p>
-                
                 </div>
             {% endfor %}
         {% else %}

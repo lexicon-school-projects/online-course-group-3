@@ -1,7 +1,7 @@
 {% extends "main_app/base.html" %}
 
 {% block body_block %}
-    <div class="jumbotron">
+    <center><div class="jumbotron">
         <h1>Please login</h1>
         <form action="{% url 'main_app:user_login' %}" method="post">
             {% csrf_token %}  
@@ -10,9 +10,8 @@
 
             <label for="password">Password:</label>
             <input type="password" name="password" placeholder="Enter Password">
-
-            
+            <br>
             <input type="submit" name="" value="Login" class="submit-button">
         </form>
-    </div>
+    </div></center>
 {% endblock %}
