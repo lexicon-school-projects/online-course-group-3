@@ -11,6 +11,7 @@ urlpatterns = [
     path('category/<str:title>/courses/', views.courses_in_category, name='courses_in_category'),
     path('teacher/<int:id>/', views.teacher_page, name='teacher_page'),   
     path('profile/', views.profile, name='profile'),
+    path('assignment/<int:course_id>/', views.assignment_view, name='assignment_view'),
     path('course/<int:course_id>/enroll/', views.add_course_to_user, name='add_course_to_user'),
     path('course/<int:course_id>/', views.course_page, name='course_page'),
 ]

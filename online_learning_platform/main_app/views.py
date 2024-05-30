@@ -1,17 +1,17 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from main_app.forms import UserForm, UserProfileInfoForm, TeacherForm
-from .models import UserProfileInfo, UserCourse, Course, Category, Teacher, Question, Quiz
+from main_app.forms import UserForm, UserProfileInfoForm, TeacherForm, AssignmentForm
+from .models import UserProfileInfo, UserCourse, Course, Assignment, Category, Teacher, Question, Quiz
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from urllib.parse import unquote
 from django.utils.text import slugify
+from django.core.files.storage import FileSystemStorage
 
 
 def index(request):
     return render(request, 'main_app/index.html')
-
 
 
 @login_required
@@ -59,10 +59,12 @@ def course_page(request, course_id):
     user_enrolled = UserCourse.objects.filter(user=request.user, course=course).exists()
     url_safe_title = slugify(course.title)
     quiz_exists = Quiz.objects.filter(course=course).exists()
+    assignment_exists = Assignment.objects.filter(course=course).exists()
     return render(request, 'main_app/course_page.html', {
         'course': course,
         'user_enrolled': user_enrolled,
         'quiz_exists': quiz_exists,
+        'assignment_exists': assignment_exists,
         'url_safe_title': url_safe_title,
     })
 
@@ -151,3 +153,7 @@ def quiz_view(request, course_title):
         'results': results,
     })
 
+def assignment_view(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    assignments = Assignment.objects.filter(course=course)
+    return render(request, 'main_app/assignment.html', {'course': course, 'assignments': assignments})
