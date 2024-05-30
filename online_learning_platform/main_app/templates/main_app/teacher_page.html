@@ -3,6 +3,7 @@
 {% block body_block %}
     <h3>{{ teacher.first_name }} {{ teacher.last_name }}</h3>
     <p>{{ teacher.bio }}</p>
+    <p><h5>Email adress:</h5><a href= >{{ teacher.email }} </a></p>
     <h4>Other courses of {{ teacher.first_name }}:</h4>
     {% if courses_same_teacher %}
         <ul>

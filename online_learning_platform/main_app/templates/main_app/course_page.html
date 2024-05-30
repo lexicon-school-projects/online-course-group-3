@@ -6,27 +6,41 @@
 <p>Release Date: {{ course.release_date }}</p>
 
 <h2>Material</h2>
+
+<h3>Videos:</h3>
+<br>
 {% if quiz_exists %}
 <h3>Quizes:</h3>
-
 <form method="get" action="{% url 'main_app:quiz_view' url_safe_title %}">
   <button type="submit">{{ course.title }} Quiz</button>
 </form>
 {% else %}
 <p>No quiz available for this course.</p>
 {% endif %} 
+<br>
 
-<h3>Pdf:</h3>
-<h3>Videos:</h3>
+{% if assignment_exists %}
+    <h3>Assignment:</h3>
+    <form method="get" action="{% url 'main_app:assignment_view' course.id %}">
+      <button type="submit">{{ course.title }} Assignment</button>
+    </form>
 
-{% if not user_enrolled %}
-<form method="post" action="{% url 'add_course_to_user' course.id %}">
-  {% csrf_token %}
-  <button type="submit">Enroll in this Course</button>
-</form>
 {% else %}
-<p>You are already enrolled in this course.</p>
+    <p>No assignment available for this course.</p>
 {% endif %}
+
+<br>
+<h3>Enrollment:</h3>
+{% if not user_enrolled %}
+  <form method="post" action="{% url 'add_course_to_user' course.id %}">
+    {% csrf_token %}
+    <button type="submit">Enroll in this Course</button>
+  </form>
+{% else %}
+  <p>You are already enrolled in this course.</p>
+{% endif %}
+
+<p><a href="{% url 'categories' %}">Back to the categories</a></p>
 {% endblock %}
 
 

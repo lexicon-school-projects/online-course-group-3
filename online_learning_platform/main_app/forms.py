@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from main_app.models import UserProfileInfo, Category, Course, Teacher, Images
+from main_app.models import UserProfileInfo, Category, Course, Teacher, Images, Assignment
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -12,7 +12,7 @@ class UserForm(forms.ModelForm):
 class TeacherForm(forms.ModelForm):
     class Meta():
         model=Teacher
-        fields = ('id', 'first_name', 'last_name','bio',)
+        fields = ('id', 'first_name', 'last_name','bio','email')
 
 class UserProfileInfoForm(forms.ModelForm):
     class Meta():
@@ -36,3 +36,7 @@ class ImagesForm(forms.ModelForm):
         model=Images
         fields=('profile_pic',)
 
+class AssignmentForm(forms.ModelForm):
+    class Meta():
+        model=Assignment
+        fields=('title','description','deadline',)

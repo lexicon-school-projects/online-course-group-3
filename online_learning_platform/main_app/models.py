@@ -24,12 +24,15 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+    
+
 
 class Teacher(models.Model):
     id=models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     bio = models.TextField(null=True, blank=True)
+    email=models.CharField(max_length=100, blank=True)
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
@@ -72,3 +75,11 @@ class UserCourse(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.course.title}"
 
+class Assignment(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank= True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    deadline= models.DateField(blank=True)
+
+    def __str__(self):
+        return self.title
