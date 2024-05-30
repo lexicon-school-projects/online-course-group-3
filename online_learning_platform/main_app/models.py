@@ -108,6 +108,7 @@ class Skill(models.Model):
     def __str__(self):
         return self.user.username + ' ' + self.course.title
 
+<<<<<<< Updated upstream
 
 class Discussion(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -117,3 +118,23 @@ class Discussion(models.Model):
 
     def __str__(self):
         return self.user.username + ' ' + self.course.title
+=======
+class video(models.Model):
+    title = models.CharField(max_length=200)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    description = models.TextField()
+    url = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
+
+class pdf(models.Model):
+    title = models.CharField(max_length=200)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    description = models.TextField()
+    path = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+>>>>>>> Stashed changes
