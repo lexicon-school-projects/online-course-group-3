@@ -53,12 +53,26 @@ def add_course_to_user(request, course_id):
     UserCourse.objects.get_or_create(user=request.user, course=course)
     return redirect('course_page', course_id=course.id)
 
+def course_detail(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if course.video_link:
+        course.video_link = convert_to_embed_url(course.video_link)
+    return render(request, 'main_app/course_page.html', {'course': course})
+
+def convert_to_embed_url(url):
+    if "watch?v=" in url:
+        return url.replace("watch?v=", "embed/")
+    elif "youtu.be/" in url:
+        return url.replace("youtu.be/", "youtube.com/embed/")
+    return url
 
 def course_page(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     user_enrolled = UserCourse.objects.filter(user=request.user, course=course).exists()
     url_safe_title = slugify(course.title)
     quiz_exists = Quiz.objects.filter(course=course).exists()
+    if course.video_link:
+        course.video_link = convert_to_embed_url(course.video_link)
     return render(request, 'main_app/course_page.html', {
         'course': course,
         'user_enrolled': user_enrolled,
