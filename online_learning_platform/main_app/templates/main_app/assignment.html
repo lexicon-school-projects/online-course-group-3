@@ -1,0 +1,27 @@
+{% extends "main_app/base.html" %}
+
+{% block body_block %}
+
+<h1>Assignments for {{ course.title }}</h1>
+   
+    <ul>
+        {% for assignment in assignments %}
+            <li>
+                <h3>{{ assignment.title }}</h3>
+                <p><h4>Guidelines:</h4> {{ assignment.description }}</p>
+                <p><h4>Deadline:</h4> {{ assignment.deadline }}</p>
+                <p><em>For any questions contact <a href="{% url 'main_app:teacher_page' course.teacher.id %}">{{ course.teacher }}</a></em></p>
+            </li>
+        {% empty %}
+            <li>No assignments available for this course.</li>
+        {% endfor %}
+        <p><h4>Answer the assignment now:</h4></p>
+        <label for="file">Upload PDF File:</label><br>
+        <input type="file" id="file" name="file"><br><br>
+        
+        <button type="submit">Submit</button>
+    </ul>
+
+    <a href="{% url 'main_app:course_page' course.id %}">Back to the course page</a>
+
+{% endblock %}
