@@ -1,6 +1,6 @@
 from django.contrib import admin
-from main_app.models import Student, Course, Category, Teacher
-from main_app.forms import CourseForm, CategoryForm, TeacherForm
+from main_app.models import UserProfileInfo, Course, Category, Teacher, Quiz, Assignment, Question
+from main_app.forms import CourseForm, CategoryForm, TeacherForm, AssignmentForm
 # Register your models here.
 
 class CourseAdmin(admin.ModelAdmin):
@@ -8,16 +8,32 @@ class CourseAdmin(admin.ModelAdmin):
     raw_id_fields = ('category',)
 
 class CategoryAdmin(admin.ModelAdmin):
-    form=CategoryForm
+    form = CategoryForm
+
+class QuestionInline(admin.TabularInline):
+    model = Question
+    extra = 1 
+
+class QuizAdmin(admin.ModelAdmin):
+    inlines = [QuestionInline]
 
 class TeacherAdmin(admin.ModelAdmin):
     form=TeacherForm
 
-admin.site.register(Student)
+class QuestionInline(admin.TabularInline):
+    model = Question
+    extra = 1 
+
+class QuizAdmin(admin.ModelAdmin):
+    inlines = [QuestionInline]
+
+class AssignmentAdmin(admin.ModelAdmin):
+    form=AssignmentForm
+
+admin.site.register(UserProfileInfo)
 admin.site.register(Course)
 admin.site.register(Category)
 admin.site.register(Teacher)
-
-
-
-
+admin.site.register(Quiz, QuizAdmin)
+admin.site.register(Question)
+admin.site.register(Assignment)

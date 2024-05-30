@@ -31,5 +31,16 @@ class CategoryForm(forms.ModelForm):
 
 class CourseForm(forms.ModelForm):
     class Meta():
-        model = Course
-        fields = ('title', 'description')
+        model= Course
+        fields = ('id','title','teacher', 'description','release_date','teacher',)
+
+
+class ImagesForm(forms.ModelForm):
+    class Meta():
+        model=Images
+        fields=('profile_pic',)
+
+class AssignmentForm(forms.ModelForm):
+    class Meta():
+        model=Assignment
+        fields=('title','description','deadline',)
