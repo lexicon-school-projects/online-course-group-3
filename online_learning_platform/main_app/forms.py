@@ -28,7 +28,7 @@ class CategoryForm(forms.ModelForm):
 class CourseForm(forms.ModelForm):
     class Meta():
         model= Course
-        fields = ('id','title','teacher', 'description','release_date','teacher',)
+        fields = ('id','title','teacher', 'video_link', 'description','release_date','teacher',)
 
 
 class ImagesForm(forms.ModelForm):

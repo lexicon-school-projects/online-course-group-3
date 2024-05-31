@@ -40,6 +40,7 @@ class Course(models.Model):
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=200)
     description = models.TextField()
+    video_link = models.URLField(max_length=200, blank=True, null=True)
     release_date = models.DateField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)

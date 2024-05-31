@@ -8,6 +8,11 @@
 <h2>Material</h2>
 
 <h3>Videos:</h3>
+{% if course.video_link %}        
+  {% with course.video_link|cut:"watch?v=" as embed_link %}       
+    <iframe width="560" height="315" src="{{ course.video_link }}" frameborder="0" allowfullscreen></iframe>
+  {% endwith %}
+{% endif %}
 <br>
 {% if quiz_exists %}
 <h3>Quizes:</h3>
@@ -30,6 +35,7 @@
 {% endif %}
 
 <br>
+
 <h3>Enrollment:</h3>
 {% if not user_enrolled %}
   <form method="post" action="{% url 'add_course_to_user' course.id %}">
