@@ -2,21 +2,38 @@
 {% load static %}
 {% block body_block %}
 
-<div class="jumbotron">
-    {% if registered %}
-    <h1>Thank you for registering!</h1>
-    {% else %}
-    <h1>Register here!</h1>
-    <h3>Fill out the form</h3>
-
-    <form enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-
-    <input type="submit" name="" value ="Register" class="submit-button">
-</form>
-    {% endif %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card rounded-3 shadow">
+                <div class="card-header bg-light border-bottom-0 text-center">
+                    {% if registered %}
+                    <h2 class="text-black mb-0">Thank You for Registering!</h2>
+                    {% else %}
+                    <h2 class="text-black mb-0">Register Here!</h2>
+                    <p class="text-muted">Fill out the form below</p>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    {% if not registered %}
+                    <form enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        {{ user_form.as_p }}
+                        {{ profile_form.as_p }}
+                        <div class="mt-4 text-center">
+                            <button type="submit" class="btn btn-dark btn-lg">Register</button>
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+                {% if registered %}
+                <div class="card-footer bg-light border-top-0 text-center">
+                    <a href="{% url 'main_app:login' %}" class="btn btn-outline-dark btn-lg">Go to Login</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
