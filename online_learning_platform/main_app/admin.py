@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main_app.models import UserProfileInfo, Course, Category, Teacher, Quiz, Assignment, Question
+from main_app.models import UserProfileInfo, Course, Category, Teacher, Quiz, Assignment, Question, Video, Pdf
 from main_app.forms import CourseForm, CategoryForm, TeacherForm, AssignmentForm
 # Register your models here.
 
@@ -37,3 +37,5 @@ admin.site.register(Teacher)
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Question)
 admin.site.register(Assignment)
+admin.site.register(Video)
+admin.site.register(Pdf)

@@ -129,7 +129,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [STATIC_DIR,]
 
 MEDIA_ROOT =MEDIA_DIR
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 
 LOGIN_URL = '/main_app/user_login/'
 LOGOUT_URL = '/main_app/logout/'

@@ -2,24 +2,22 @@
 
 {% block body_block %}
 
-<style>
-.item{
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 300px; 
-    border-radius: 40px;
-}
-</style>
 
-{% for category in categories %}
-<div class="container">
-    <div class="item">
-        <h3>{{ category.title }}</h3>
-            <p><strong>Description: </strong> {{ category.description }}</p>
-        <a href="{% url 'courses_in_category' category.title %}">View courses in this category</a>
-        <br><br>
+<section>
+<div class="row  row-cols-1 row-cols-md-2 g-4">
+
+    {% for category in categories %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ category.title }}</h5>
+                <p class="card-text">{{ category.description }}</p>
+                <a href="{% url 'courses_in_category' category.title %}">View courses in this category</a>
+            </div>
+        </div>
     </div>
-</div>
     {% endfor %}
+</div>
+
+</section>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from main_app.forms import UserForm, UserProfileInfoForm, TeacherForm, AssignmentForm
-from .models import UserProfileInfo, UserCourse, Course, Assignment, Category, Teacher, Question, Quiz
+from .models import UserProfileInfo, UserCourse, Course, Assignment, Category, Teacher, Question, Quiz,Video,Pdf
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -60,11 +60,15 @@ def course_page(request, course_id):
     url_safe_title = slugify(course.title)
     quiz_exists = Quiz.objects.filter(course=course).exists()
     assignment_exists = Assignment.objects.filter(course=course).exists()
+    videos = Video.objects.filter(course=course)
+    pdfs = Pdf.objects.filter(course=course)
     return render(request, 'main_app/course_page.html', {
         'course': course,
         'user_enrolled': user_enrolled,
         'quiz_exists': quiz_exists,
         'assignment_exists': assignment_exists,
+        'videos': videos,
+        'pdfs': pdfs,
         'url_safe_title': url_safe_title,
     })
 

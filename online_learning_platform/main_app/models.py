@@ -65,7 +65,7 @@ class Question(models.Model):
     correct_option = models.CharField(max_length=200)
 
 
-class video(models.Model):
+class Video(models.Model):
     title = models.CharField(max_length=200)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     description = models.TextField()
@@ -75,7 +75,7 @@ class video(models.Model):
         return self.title
 
 
-class pdf(models.Model):
+class Pdf(models.Model):
     title = models.CharField(max_length=200)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     description = models.TextField()
