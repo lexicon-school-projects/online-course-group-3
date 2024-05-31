@@ -1,33 +1,29 @@
 from django import forms
 from django.contrib.auth.models import User
-from main_app.models import Student, Category, Course, Teacher
-
+from main_app.models import UserProfileInfo, Category, Course, Teacher, Images, Assignment
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta():
-        model = User
+        model= User
         fields = ('username', 'email', 'password',)
-
 
 class TeacherForm(forms.ModelForm):
     class Meta():
-        model = User
-        fields = ('first_name', 'last_name')
+        model=Teacher
+        fields = ('id', 'first_name', 'last_name','bio','email')
 
-
-class StudentForm(forms.ModelForm):
+class UserProfileInfoForm(forms.ModelForm):
     class Meta():
-        model = Student
+        model = UserProfileInfo
         fields = ('profile_pic',)
 
 
 class CategoryForm(forms.ModelForm):
     class Meta():
-        model = Category
-        fields = ('title', 'description',)
-
+        model= Category
+        fields = ('title','description',)
 
 class CourseForm(forms.ModelForm):
     class Meta():

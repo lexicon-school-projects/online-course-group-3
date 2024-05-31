@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-from django.shortcuts import render,redirect
-from main_app.forms import UserForm, StudentForm, TeacherForm
-from .models import Student, Course, Category, Teacher
-=======
 from django.shortcuts import render,redirect, get_object_or_404
 from main_app.forms import UserForm, UserProfileInfoForm, TeacherForm, AssignmentForm
 from .models import UserProfileInfo, UserCourse, Course, Assignment, Category, Teacher, Question, Quiz
->>>>>>> development
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -83,7 +77,7 @@ def register(request):
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        profile_form =StudentForm(data=request.POST)
+        profile_form =UserProfileInfoForm(data=request.POST)
 
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
@@ -105,7 +99,7 @@ def register(request):
 
     else:
         user_form =UserForm()
-        profile_form = StudentForm
+        profile_form = UserProfileInfoForm
     return render(request, 'main_app/registration.html',
                 {'user_form':user_form,
                  'profile_form':profile_form,
