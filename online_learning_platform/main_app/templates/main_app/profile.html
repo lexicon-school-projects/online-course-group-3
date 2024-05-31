@@ -1,8 +1,8 @@
 {% extends "main_app/base.html" %}
 
 {% block body_block %}
-
-<div class="container">
+<br><br><br>
+<div class="container-profile">
     <h1>Welcome {{ user.username }}</h1>
     <h2>Enrolled Courses</h2>
     <ul>
@@ -14,5 +14,74 @@
     </ul>
     <p><a href="{% url 'categories' %}">See all the courses</a></p>
 </div>
+
+<style>
+    .container-profile  {
+        margin-top: 0px;
+        background: #c6c9cca1;
+        padding: 25px;
+        border-radius: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .container-profile h1 {
+        font-size: 3.8rem;
+        color: #0b7ef2;
+        margin-bottom: 35px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .container-profile h2 {
+        font-size: 2rem;
+        color: #6c757d;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .container-profile ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .container-profile ul li {
+        background: #cac2c29f;
+        margin: 10px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .container-profile ul li:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .container-profile ul li a {
+        display: block;
+        padding: 15px;
+        color: black;
+        text-decoration: none;
+        font-size: 2.0rem;
+        border-radius: 5px;
+        transition: color 0.3s;
+    }
+
+    .container-profile ul li a:hover {
+        color: #0056b3;
+    }
+
+    .container-profile p a {
+        color: #28a745;
+        text-decoration: none;
+        font-size: 1.35rem;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .container-profile p a:hover {
+        color: #218838;
+    }
+</style>
 
 {% endblock %}
