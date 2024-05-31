@@ -1,129 +1,92 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ quiz.title }}</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-      .correct {
-        color: green;
-      }
-      .incorrect {
-        color: red;
-      }
-      .error-message {
-        color: red;
-        font-weight: bold;
-        display: none;
-      }
-    </style>
-  </head>
-  <body class="container">
-    <h1 class="my-4">{{ quiz.title }}</h1>
-    <form method="post">
-      {% csrf_token %}
-      <ul class="list-group">
-        {% for question in questions %}
-        <li class="list-group-item">
-          <strong>{{ question.text }}</strong>
-          <ul class="list-unstyled">
-            <li class="form-check">
-              <label class="form-check-label">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="question_{{ question.id }}"
-                  value="{{ question.option1 }}"
-                />
-                {{ question.option1 }}
-              </label>
-            </li>
-            <li class="form-check">
-              <label class="form-check-label">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="question_{{ question.id }}"
-                  value="{{ question.option2 }}"
-                />
-                {{ question.option2 }}
-              </label>
-            </li>
-            <li class="form-check">
-              <label class="form-check-label">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="question_{{ question.id }}"
-                  value="{{ question.option3 }}"
-                />
-                {{ question.option3 }}
-              </label>
-            </li>
-            <li class="form-check">
-              <label class="form-check-label">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="question_{{ question.id }}"
-                  value="{{ question.option4 }}"
-                />
-                {{ question.option4 }}
-              </label>
-            </li>
-          </ul>
-          {% if results %} {% for result in results %} {% if result.question.id == question.id %}
-          <p id="result-feedback" class="{% if result.is_correct %}correct{% else %}incorrect{% endif %} mt-2">
-            {% if result.is_correct %} {{ result.correct_option }} is correct! {% else %} Incorrect! The correct answer
-            is: {{ result.correct_option }} {% endif %}
-          </p>
-          {% endif %} {% endfor %} {% endif %}
+{% extends "main_app/base.html" %}
+
+{% block body_block %}
+
+
+<h1 class="my-4">{{ quiz.title }}</h1>
+<form method="post">
+  {% csrf_token %}
+  <ul class="list-group">
+    {% for question in questions %}
+    <li class="list-group-item">
+      <strong>{{ question.text }}</strong>
+      <ul class="list-unstyled">
+        <li class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="question_{{ question.id }}"
+              value="{{ question.option1 }}" />
+            {{ question.option1 }}
+          </label>
         </li>
-        {% endfor %}
+        <li class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="question_{{ question.id }}"
+              value="{{ question.option2 }}" />
+            {{ question.option2 }}
+          </label>
+        </li>
+        <li class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="question_{{ question.id }}"
+              value="{{ question.option3 }}" />
+            {{ question.option3 }}
+          </label>
+        </li>
+        <li class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="question_{{ question.id }}"
+              value="{{ question.option4 }}" />
+            {{ question.option4 }}
+          </label>
+        </li>
       </ul>
-      <div class="error-message" id="error-message">Please answer all questions before submitting.</div>
-      <button type="submit" class="btn btn-primary mt-3">Submit</button>
-      <button type="button" class="btn btn-secondary mt-3" id="redo-button">Redo Test</button>
-    </form>
+      {% if results %} {% for result in results %} {% if result.question.id == question.id %}
+      <p id="result-feedback" class="{% if result.is_correct %}correct{% else %}incorrect{% endif %} mt-2">
+        {% if result.is_correct %} {{ result.correct_option }} is correct! {% else %} Incorrect! The correct answer
+        is: {{ result.correct_option }} {% endif %}
+      </p>
+      {% endif %} {% endfor %} {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  <div class="error-message" id="error-message">Please answer all questions before submitting.</div>
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  <button type="button" class="btn btn-secondary mt-3" id="redo-button">Redo Test</button>
+</form>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-      document.querySelector("form").onsubmit = function () {
-        let allAnswered = true;
-        document.querySelectorAll(".list-group-item").forEach(function (item) {
-          let options = item.querySelectorAll('input[type="radio"]');
-          let answered = false;
-          options.forEach(function (option) {
-            if (option.checked) {
-              answered = true;
-            }
-          });
-          if (!answered) {
-            allAnswered = false;
-            item.classList.add("border", "border-danger");
-          } else {
-            item.classList.remove("border", "border-danger");
-          }
-        });
-        if (!allAnswered) {
-          document.getElementById("error-message").style.display = "block";
-          return false;
-        } else {
-          document.getElementById("error-message").style.display = "none";
+<script>
+  document.querySelector("form").onsubmit = function () {
+    let allAnswered = true;
+    document.querySelectorAll(".list-group-item").forEach(function (item) {
+      let options = item.querySelectorAll('input[type="radio"]');
+      let answered = false;
+      options.forEach(function (option) {
+        if (option.checked) {
+          answered = true;
         }
-        return true;
-      };
-      document.getElementById("redo-button").onclick = function () {
-        document.querySelector("form").reset();
-        document.querySelectorAll("#result-feedback").forEach(function (element) {
-          element.style.display = "none";
-        });
-        document.getElementById("error-message").style.display = "none";
-      };
-    </script>
-  </body>
-</html>
+      });
+      if (!answered) {
+        allAnswered = false;
+        item.classList.add("border", "border-danger");
+      } else {
+        item.classList.remove("border", "border-danger");
+      }
+    });
+    if (!allAnswered) {
+      document.getElementById("error-message").style.display = "block";
+      return false;
+    } else {
+      document.getElementById("error-message").style.display = "none";
+    }
+    return true;
+  };
+  document.getElementById("redo-button").onclick = function () {
+    document.querySelector("form").reset();
+    document.querySelectorAll("#result-feedback").forEach(function (element) {
+      element.style.display = "none";
+    });
+    document.getElementById("error-message").style.display = "none";
+  };
+</script>
+{% endblock %}
