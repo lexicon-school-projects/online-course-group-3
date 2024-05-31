@@ -3,17 +3,37 @@
 {% block body_block %}
     <h3>{{ teacher.first_name }} {{ teacher.last_name }}</h3>
     <p>{{ teacher.bio }}</p>
-    <p><h5>Email adress:</h5><a href= >{{ teacher.email }} </a></p>
+    <p><h5>Email adress:</h5>
+    <div class="item">
+       <a href= >{{ teacher.email }} </a></p> 
+    </div><a href= >{{ teacher.email }} </a></p>
     <h4>Other courses of {{ teacher.first_name }}:</h4>
     {% if courses_same_teacher %}
         <ul>
         {% for course in courses_same_teacher %}
             <li>
-                <a href="{% url 'main_app:course_page' course.id %}">{{ course.title }}</a>
+                <div class="item">
+                    <a href="{% url 'main_app:course_page' course.id %}">{{ course.title }}</a>
+                </div>
             </li>
         {% endfor %}
         </ul>
     {% else %}
         <p>No other courses available.</p>
     {% endif %}
+    <style>
+        body {
+             background-color: rgba(201, 191, 191, 0.801)
+            }
+        
+        .item a {
+          text-decoration: none;
+          color: #497a0876;
+          font-weight: bold;
+      }
+      
+        .item a:hover {
+          text-decoration: underline;
+      }
+      </style>
 {% endblock %}

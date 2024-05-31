@@ -10,7 +10,6 @@
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(243, 243, 243, 0.801);
   }
   
   .footer {
@@ -61,3 +60,17 @@
     align-items: center;
    
   }
+
+  body {
+       background-color: rgba(201, 191, 191, 0.801)
+      }
+  
+  .item a {
+    text-decoration: none;
+    color: #497a0876;
+    font-weight: bold;
+}
+
+  .item a:hover {
+    text-decoration: underline;
+}

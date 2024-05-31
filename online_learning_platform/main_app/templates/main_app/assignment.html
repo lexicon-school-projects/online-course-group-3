@@ -10,7 +10,10 @@
                 <h3>{{ assignment.title }}</h3>
                 <p><h4>Guidelines:</h4> {{ assignment.description }}</p>
                 <p><h4>Deadline:</h4> {{ assignment.deadline }}</p>
-                <p><em>For any questions contact <a href="{% url 'main_app:teacher_page' course.teacher.id %}">{{ course.teacher }}</a></em></p>
+                <div class="item">
+                    <p><em>For any questions contact <a href="{% url 'main_app:teacher_page' course.teacher.id %}">{{ course.teacher }}</a></em></p>
+                </div>
+                
             </li>
         {% empty %}
             <li>No assignments available for this course.</li>
@@ -21,7 +24,25 @@
         
         <button type="submit">Submit</button>
     </ul>
-
-    <a href="{% url 'main_app:course_page' course.id %}">Back to the course page</a>
-
+    <div class="item">
+        <a href="{% url 'main_app:course_page' course.id %}">Back to the course page</a>
+    </div>
+    
+    
+    <style>
+        body {
+             background-color: rgba(201, 191, 191, 0.801)
+            }
+        
+        .item a {
+          text-decoration: none;
+          color: #497a0876;
+          font-weight: bold;
+      }
+      
+        .item a:hover {
+          text-decoration: underline;
+      }
+    </style>
+      
 {% endblock %}

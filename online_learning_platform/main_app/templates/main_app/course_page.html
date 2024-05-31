@@ -2,7 +2,10 @@
 <h2>{{ course.title }}</h2>
 <p>{{ course.description }}</p>
 
-<p>Teacher: <a href="{% url 'main_app:teacher_page' course.teacher.id %}">{{ course.teacher }} </a></p>
+<div class="item">
+  <p>Teacher: <a href="{% url 'main_app:teacher_page' course.teacher.id %}">{{ course.teacher }} </a></p>
+</div>
+
 <p>Release Date: {{ course.release_date }}</p>
 
 <h2>Material</h2>
@@ -45,8 +48,28 @@
 {% else %}
   <p>You are already enrolled in this course.</p>
 {% endif %}
+<div class="item">
+  <p><a href="{% url 'categories' %}">Back to the categories</a></p>
+</div>
 
-<p><a href="{% url 'categories' %}">Back to the categories</a></p>
+
+<style>
+  body {
+       background-color: rgba(201, 191, 191, 0.801)
+      }
+  
+  .item a {
+    text-decoration: none;
+    color: #497a0876;
+    font-weight: bold;
+}
+
+  .item a:hover {
+    text-decoration: underline;
+}
+</style>
+
+
 {% endblock %}
 
 

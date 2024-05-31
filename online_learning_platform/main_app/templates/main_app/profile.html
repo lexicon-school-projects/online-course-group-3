@@ -12,10 +12,27 @@
             </li>
         {% endfor %}
     </ul>
-    <p><a href="{% url 'categories' %}">See all the courses</a></p>
+    <div class="item">
+        <p><a href="{% url 'categories' %}">See all the courses</a></p>
+    </div>
+    
 </div>
 
 <style>
+        body {
+             background-color: rgba(201, 191, 191, 0.801)
+            }
+        
+        .item a {
+          text-decoration: none;
+          color: #497a0876;
+          font-weight: bold;
+      }
+      
+        .item a:hover {
+          text-decoration: underline;
+      }
+    
     .container-profile  {
         margin-top: 0px;
         background: #c6c9cca1;
@@ -26,7 +43,7 @@
 
     .container-profile h1 {
         font-size: 3.8rem;
-        color: #0b7ef2;
+        color: #133a2b;
         margin-bottom: 35px;
         text-align: center;
         font-weight: bold;
@@ -68,11 +85,11 @@
     }
 
     .container-profile ul li a:hover {
-        color: #0056b3;
+        color: #00b30f37;
     }
 
     .container-profile p a {
-        color: #28a745;
+        color: #21644a91;
         text-decoration: none;
         font-size: 1.35rem;
         font-weight: bold;
@@ -80,7 +97,7 @@
     }
 
     .container-profile p a:hover {
-        color: #218838;
+        color: #0c331491;
     }
 </style>
 
