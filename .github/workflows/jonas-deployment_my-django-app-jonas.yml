@@ -64,4 +64,11 @@ jobs:
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3D77C7CA4D7846A3A7375DB9EDA5CB97 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_55CBAC0C345148EA9BAB784E50192C30 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_39BA1C06ED
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_39BA1C06ED2444F9A7511362F03CC368 }}
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'my-django-app-jonas'
+          slot-name: 'production'
