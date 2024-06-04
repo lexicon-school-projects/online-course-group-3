@@ -27,9 +27,12 @@ SECRET_KEY = 'django-insecure-a24aixqgkf++%8t^^@z6ac(nq0(os)9(tvymi*-q(u=1i-&gir
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['my-django-app-jonas.azurewebsites.net']
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://my-django-app-jonas.azurewebsites.net'
+]
 # Application definition
 
 INSTALLED_APPS = [
